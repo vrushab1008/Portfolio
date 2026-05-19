@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Vrushab S Lagamannavar — Portfolio (Static)</title>
+  <meta name="theme-color" content="#071020">
+  <style>
+    :root{--bg1:#0f172a;--bg2:#091226;--accent:#7c3aed;--muted:#9aa4b2}
+    html,body{height:100%;margin:0;font-family:Inter,Arial,Helvetica,sans-serif;background:linear-gradient(180deg,var(--bg1),var(--bg2));color:#e6eef8}
+    .wrap{max-width:1000px;margin:28px auto;padding:20px}
+    header{display:flex;align-items:center;justify-content:space-between;gap:12px}
+    .brand{display:flex;align-items:center;gap:12px}
+    .avatar{width:64px;height:64px;border-radius:12px;background:linear-gradient(135deg,#7c3aed,#06b6d4);display:flex;align-items:center;justify-content:center;font-weight:700}
+    .name{font-weight:700}
+    nav a{color:var(--muted);margin-left:12px;text-decoration:none}
+    .hero{display:flex;gap:28px;align-items:center;margin-top:20px}
+    .scene{width:520px;height:320px;border-radius:12px;overflow:hidden;background:linear-gradient(180deg,rgba(255,255,255,0.03),transparent)}
+    .card{padding:24px;border-radius:12px;background:linear-gradient(180deg,rgba(255,255,255,0.02),transparent);max-width:420px}
+    .role{color:var(--muted);margin-top:8px}
+    .cta{margin-top:14px}
+    .btn{display:inline-block;padding:8px 12px;border-radius:8px;background:transparent;border:1px solid rgba(255,255,255,0.06);color:#e6eef8;text-decoration:none;margin-right:8px}
+    .btn.primary{background:linear-gradient(90deg,#7c3aed,#06b6d4);border:none}
+    section{margin-top:28px}
+    .skills{display:flex;gap:8px;flex-wrap:wrap}
+    .skill{background:rgba(255,255,255,0.04);padding:6px 10px;border-radius:8px}
+    footer{text-align:center;margin-top:28px;color:var(--muted)}
+    /* modal */
+    .modal{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(2,6,23,0.6);visibility:hidden;opacity:0;transition:opacity .18s}
+    .modal.show{visibility:visible;opacity:1}
+    .modal .panel{background:#071428;padding:18px;border-radius:10px;max-width:520px;color:#e6eef8}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <div class="brand">
+        <div class="avatar">VL</div>
+        <div>
+          <div class="name">VRUSHAB S LAGAMANNAVAR</div>
+          <div class="muted">Full-Stack Developer & Java Engineer</div>
+        </div>
+      </div>
+      <nav>
+        <a href="#projects">Projects</a>
+        <a href="#experience">Experience</a>
+        <a href="#contact">Contact</a>
+        <a class="btn" href="mailto:lagamannavarvrushab@gmail.com">Email</a>
+        <a class="btn" href="https://linkedin.com/in/vrushab-lagamannavar" target="_blank">LinkedIn</a>
+      </nav>
+    </header>
+
+    <div class="hero">
+      <div class="scene" id="scene"></div>
+      <div class="card">
+        <h1>Hi, I'm Vrushab</h1>
+        <p class="role">Engineering graduate with Core Java & full-stack development experience.</p>
+        <div class="cta">
+          <a class="btn primary" id="contactBtn">Get In Touch</a>
+          <a class="btn" href="/resume.pdf" download>Resume</a>
+        </div>
+      </div>
+    </div>
+
+    <section id="projects">
+      <h2>Projects</h2>
+      <div>
+        <strong>React Portfolio Website — 2026</strong>
+        <p>Responsive SPA using React and Vite; CI/CD to Netlify.</p>
+      </div>
+      <div>
+        <strong>Hybrid-Based EV Charging Station — 2025</strong>
+        <p>Simulated hybrid EV charging using Python & MATLAB.</p>
+      </div>
+      <div>
+        <strong>Smart Dustbin – IoT — 2023</strong>
+        <p>Sensor-based prototype with embedded controller.</p>
+      </div>
+    </section>
+
+    <section id="experience">
+      <h2>Experience</h2>
+      <div>
+        <strong>Engineering Intern — COMEDKares Innovation Hub</strong>
+        <ul>
+          <li>Prototype development and integration testing</li>
+          <li>Technical documentation and cross-team collaboration</li>
+        </ul>
+      </div>
+    </section>
+
+    <footer>
+      © <span id="year"></span> Vrushab S Lagamannavar
+    </footer>
+  </div>
+
+  <div class="modal" id="modal">
+    <div class="panel">
+      <h3>Contact</h3>
+      <p><strong>Email:</strong> <a href="mailto:lagamannavarvrushab@gmail.com">lagamannavarvrushab@gmail.com</a></p>
+      <p><strong>Phone:</strong> +91 8660587232</p>
+      <p><strong>Location:</strong> Belagavi, Karnataka</p>
+      <p><strong>LinkedIn:</strong> <a href="https://linkedin.com/in/vrushab-lagamannavar" target="_blank">linkedin.com/in/vrushab-lagamannavar</a></p>
+      <div style="margin-top:12px">
+        <a class="btn primary" href="mailto:lagamannavarvrushab@gmail.com">Email Now</a>
+        <a class="btn" id="closeModal">Close</a>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://unpkg.com/three@0.158.0/build/three.min.js"></script>
+  <script>
+    // simple three.js scene (TorusKnot)
+    const mount = document.getElementById('scene')
+    const scene = new THREE.Scene()
+    const width = mount.clientWidth
+    const height = mount.clientHeight
+    const camera = new THREE.PerspectiveCamera(45, width / height, 0.1, 1000)
+    camera.position.set(0, 0.8, 3)
+    const renderer = new THREE.WebGLRenderer({antialias:true,alpha:true})
+    renderer.setSize(width,height)
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio,2))
+    mount.appendChild(renderer.domElement)
+
+    scene.fog = new THREE.FogExp2(0x071020, 0.02)
+    const hemi = new THREE.HemisphereLight(0xffffff,0x444444,0.6)
+    hemi.position.set(0,1,0);scene.add(hemi)
+    const dir = new THREE.DirectionalLight(0xffffff,0.8);dir.position.set(5,5,5);scene.add(dir)
+
+    const geometry = new THREE.TorusKnotGeometry(0.6,0.18,140,24)
+    const material = new THREE.MeshStandardMaterial({color:0x7c3aed,metalness:0.3,roughness:0.25,emissive:0x062638,emissiveIntensity:0.2})
+    const mesh = new THREE.Mesh(geometry,material);mesh.rotation.x=0.6;scene.add(mesh)
+
+    const group = new THREE.Group()
+    for(let i=0;i<6;i++){const s=new THREE.Mesh(new THREE.SphereGeometry(0.06,16,16),new THREE.MeshStandardMaterial({color:0x06b6d4}));const a=(i/6)*Math.PI*2;s.position.set(Math.cos(a)*1.4,Math.sin(a)*0.5,Math.sin(a)*0.6);group.add(s)}
+    scene.add(group)
+
+    const clock = new THREE.Clock()
+    function animate(){const t=clock.getElapsedTime();mesh.rotation.y=t*0.35;mesh.rotation.x=0.6+Math.sin(t*0.6)*0.05;group.rotation.y=-t*0.2;renderer.render(scene,camera);requestAnimationFrame(animate)}
+    animate()
+
+    window.addEventListener('resize',()=>{const w=mount.clientWidth;const h=mount.clientHeight;camera.aspect=w/h;camera.updateProjectionMatrix();renderer.setSize(w,h)})
+
+    // modal
+    document.getElementById('contactBtn').addEventListener('click',()=>{document.getElementById('modal').classList.add('show')})
+    document.getElementById('closeModal').addEventListener('click',()=>{document.getElementById('modal').classList.remove('show')})
+
+    document.getElementById('year').textContent=new Date().getFullYear()
+  </script>
+</body>
+</html>
